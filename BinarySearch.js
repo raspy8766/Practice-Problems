@@ -1,31 +1,41 @@
-binarySearchRecurse = function(val, firstHalf, array) {
-  if (firstHalf === undefined) {
-    firstHalf = this.slice();
-  }
+Array.prototype.binarySearchRecurse = function(val) {
+  
+  var initArray = this.slice();
+  var result;
 
-  if (firstHalf.length === 1) {
-    return firstHalf[0] === val;
-  }
+  var recurse = function(firstHalf) {
 
-
-  if (firstHalf.length % 2 === 0) {
-    var arrayHalfIndex = firstHalf.length/2;
-  } else {
-    var arrayHalfIndex = Math.floor(firstHalf.length/2);
-  }
-  var secondHalf = firstHalf.splice(arrayHalfIndex, firstHalf.length - 1);
-
-  if (val < secondHalf[0]) {
-    if (firstHalf[0] === val) {
-      return true;
+    if (firstHalf.length === 1) {
+      result = firstHalf[0] === val;
+      return;
     }
-    binarySearchRecurse(val, firstHalf);
-  } else {
-    if (secondHalf[0] === val) {
-      return true;
+
+
+    if (firstHalf.length % 2 === 0) {
+      var arrayHalfIndex = firstHalf.length/2;
+    } else {
+      var arrayHalfIndex = Math.floor(firstHalf.length/2);
     }
-    binarySearchRescurse(val, secondHalf)
+
+    var secondHalf = firstHalf.splice(arrayHalfIndex, firstHalf.length - 1);
+
+    if (val < secondHalf[0]) {
+      if (firstHalf[0] === val) {
+        result = true
+        return;
+      }
+      recurse(firstHalf);
+    } else {
+      if (secondHalf[0] === val) {
+        result = true;
+        return;
+      }
+      recurse(secondHalf);
+    }
   }
+  recurse(initArray);
+
+  return result;
 };
 
 
