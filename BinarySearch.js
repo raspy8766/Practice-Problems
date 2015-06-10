@@ -1,5 +1,5 @@
 Array.prototype.binarySearchRecurse = function(val) {
-  
+
   var initArray = this.slice();
   var result;
 
@@ -10,12 +10,7 @@ Array.prototype.binarySearchRecurse = function(val) {
       return;
     }
 
-
-    if (firstHalf.length % 2 === 0) {
-      var arrayHalfIndex = firstHalf.length/2;
-    } else {
-      var arrayHalfIndex = Math.floor(firstHalf.length/2);
-    }
+    var arrayHalfIndex = Math.floor(firstHalf.length/2);
 
     var secondHalf = firstHalf.splice(arrayHalfIndex, firstHalf.length - 1);
 
